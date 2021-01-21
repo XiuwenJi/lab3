@@ -13,6 +13,31 @@ function initializePage() {
 		$('.jumbotron h1').text("Javascript is connected");
 	});
 
+	$("#testjs").click(function(e) {
+		$('.jumbotron h1').text("Javascript has taken control");
+		$("#testjs").text("Please wait...");
+	    $(".jumbotron p").addClass("active");
+	});
+
+	$("a.thumbnail").click(projectClick);
+	
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
+}
+
+function projectClick(e) {
+	e.preventDefault();
+	var containingProject = $(this).closest(".project");
+    var description = $(containingProject).find(".project-description");
+    if (description.length == 0) {
+       $(containingProject).append("<div class='project-description'><p>Description of the project.</p></div>");
+    } else {
+	   //description.html("<p>Stop clicking on me! You just did it at " + (new Date()) + "</p>");
+	   /*description.animate({
+		   opacity: 0.25,
+		   left: "+=50",
+		   height: "toggle"
+	   },1000);*/
+	   description.fadeToggle();
+	} 
 }
